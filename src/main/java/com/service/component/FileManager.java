@@ -35,6 +35,7 @@ public class FileManager {
             fos.write(file);
             fos.close();
         } catch (NullPointerException | IOException e) {
+            log.info("ex = {}", e);
             throw new CustomIoException(e.getMessage());
         }
 
