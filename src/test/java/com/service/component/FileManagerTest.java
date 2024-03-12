@@ -47,7 +47,7 @@ class FileManagerTest {
         //given
         byte[] file = "abcd".getBytes();
         String fileName = "abcd.bin";
-        String tmpDirPath = "/tmp/";
+        String tmpDirPath = "/encTmp/";
         fileManager.setFilePath(tmpDirPath);
 
         //when
