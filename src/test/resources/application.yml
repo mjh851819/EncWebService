@@ -1,4 +1,4 @@
 spring:
   servlet:
     multipart:
-      location: 'C:/tmp/'
+      location: '/encTmp/'
