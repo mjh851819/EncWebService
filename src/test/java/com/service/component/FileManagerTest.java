@@ -45,7 +45,7 @@ class FileManagerTest {
         //given
         byte[] file = "abcd".getBytes();
         String fileName = "abcd.bin";
-        fileManager.setFilePath(tempDir.toString() + "\\");
+        fileManager.setFilePath(tempDir.toString() + "/");
 
         //when
         String SavedFileName = fileManager.uploadBinaryFile(file, fileName);
