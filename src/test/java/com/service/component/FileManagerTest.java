@@ -18,7 +18,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class FileManagerTest {
 
     private FileManager fileManager = new FileManager();
-    private String tmp = "~/encTmp/";
+    private String tmp = "/encTmp/";
 
     @BeforeEach
     void setUp() {
