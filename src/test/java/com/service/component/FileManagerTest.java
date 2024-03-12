@@ -18,12 +18,12 @@ import static org.junit.jupiter.api.Assertions.*;
 class FileManagerTest {
 
     private FileManager fileManager = new FileManager();
-    private String tmp = "/tmp";
+    private String tmp = "~/encTmp";
 
     @BeforeEach
     void setUp() {
 
-        fileManager.setFilePath(tmp);
+        //fileManager.setFilePath(tmp);
     }
 
     @Test
@@ -47,14 +47,13 @@ class FileManagerTest {
         //given
         byte[] file = "abcd".getBytes();
         String fileName = "abcd.bin";
-        String tmpDirPath = "/encTmp/";
-        fileManager.setFilePath(tmpDirPath);
 
         //when
         String savedFileName = fileManager.uploadBinaryFile(file, fileName);
 
         //then
-        Path filePath = Paths.get(tmpDirPath + savedFileName);
+
+        Path filePath = Paths.get(fileManager.getFullFilePath(savedFileName));
         File uploadedFile = filePath.toFile();
         assertTrue(uploadedFile.exists());
         assertTrue(uploadedFile.isFile());

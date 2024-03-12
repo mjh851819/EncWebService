@@ -1,4 +1,4 @@
 spring:
   servlet:
     multipart:
-      location: 'src/tmp/'
+      location: 'C:/tmp/'

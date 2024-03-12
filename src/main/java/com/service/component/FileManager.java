@@ -29,6 +29,8 @@ public class FileManager {
 
         String savedFileName = createSavedFileName(fileName, UUID.randomUUID().toString());
 
+        log.info("path = {}", filePath);
+
         try(FileOutputStream fos = new FileOutputStream(getFullFilePath(savedFileName));) {
             fos.write(file);
             fos.close();
