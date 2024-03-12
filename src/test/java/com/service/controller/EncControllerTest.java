@@ -1,7 +1,9 @@
 package com.service.controller;
 
 import com.service.component.FileManager;
+import com.service.component.encryption.Encryptor;
 import com.service.domain.File;
+import com.service.dto.EncryptionResult;
 import com.service.dto.FileDto;
 import com.service.repository.FileRepository;
 import com.service.service.EncService;
@@ -23,6 +25,8 @@ import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.transaction.annotation.Transactional;
 import testModule.MockBuilder;
 
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -45,6 +49,10 @@ class EncControllerTest {
 
     @Autowired
     private FileRepository fileRepository;
+
+    @Autowired
+    private FileManager fileManager;
+
 
     @BeforeEach
     public void setUp(){
@@ -124,7 +132,9 @@ class EncControllerTest {
 
         //given
         String fileName = "test.bin";
-        String savedFileName = "test.bin";
+        byte[] contents = "abcd".getBytes();
+        String savedFileName = fileManager.uploadBinaryFile(contents, fileName);
+
 
         //when
         ResultActions resultAction = mvc.perform(get("/download/{savedFileName}", savedFileName).param("fileName", fileName));
@@ -133,6 +143,13 @@ class EncControllerTest {
         resultAction
                 .andExpect(status().isOk())
                 .andExpect(header().string(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + fileName + "\""));
+
+        Path filePath = Paths.get(fileManager.getFullFilePath(savedFileName));
+        java.io.File uploadedFile = filePath.toFile();
+
+        if (uploadedFile.exists()) {
+            uploadedFile.delete(); // 파일 삭제
+        }
     }
 
 }

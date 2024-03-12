@@ -3,7 +3,7 @@ spring:
     multipart:
       max-file-size: 10GB
       max-request-size: 10GB
-      location: '~/encTmp/'
+      location: '/encTmp/'
 
   datasource:
     driver-class-name: org.h2.Driver
