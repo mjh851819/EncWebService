@@ -1,0 +1,82 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <link th:href="@{/css/styles.css}" rel="stylesheet" />
+    <title>바이너리 파일 암호화 시스템</title>
+</head>
+<body>
+<dic th:class="container">
+
+    <div class="text-center">
+        <h2>바이너리 파일 암호화 시스템</h2>
+    </div>
+    <form id="uploadForm" th:action method="post" enctype="multipart/form-data">
+
+        <div class="filebox">
+            <input class="upload-name" value="암호화 대상 파일을 업로드 하세요." disabled="disabled">
+            <label for="ex_filename">
+                <text class="search_text"> 찾아보기 </text>
+            </label>
+            <input type="file" id="ex_filename" class="upload-hidden" accept=".bin" name="file">
+        </div>
+
+
+        <button id="uploadButton" type="submit">제출하기</button>
+    </form>
+
+    <div class="table-container">
+
+        <table>
+            <tr>
+                <th>No.</th>
+                <th>암호화 대상 파일</th>
+                <th>암호화 된 파일</th>
+                <th>IV 값</th>
+                <th>일시</th>
+            </tr>
+            <tr th:each="file, count: ${files}">
+                <td th:text="${ (currentPage - 1) * 5 + count.count }">No</td>
+                <td>
+                    <span class="fileName" th:text="${file.fileName}">암호화 대상 파일</span>
+                    <a class="download" th:href="|/download/${file.savedFileName}?fileName=${file.fileName}|">
+                        <img class="downIcon" th:src="@{/image/downIcon.png}" alt="다운로드 버튼">
+                    </a>
+                </td>
+                <td>
+                    <span class="fileName" th:text="${file.encFileName}"> 암호화 된 파일 </span>
+                    <a class="download" th:href="|/download/${file.savedEncFileName}?fileName=${file.encFileName}|">
+                        <img class="downIcon" th:src="@{/image/downIcon.png}" alt="다운로드 버튼">
+                    </a>
+                </td>
+                <td th:text="${file.iv}">IV 값</td>
+                <td th:text="${#temporals.format(file.getCreatedAt(), 'yyyy-MM-dd HH:mm:ss') }">일시</td>
+            </tr>
+        </table>
+
+    </div>
+
+    <div class="pagination">
+        <button id="previousButton" onclick="goToPreviousPage()"> &lt; </button>
+        <span id="currentPage" th:text="${currentPage} == 0 ? 1 : ${currentPage}">1</span> / <span id="totalPage" th:text="${totalPage} == 0 ? 1 : ${totalPage}">10</span>
+        <button id="nextButton" onclick="goToNextPage()"> &gt; </button>
+    </div>
+
+    <!-- 모달 창 -->
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <p id="progressText">업로드 중...</p>
+            <div class="progress">
+                <div id="progressBar" class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0"
+                     aria-valuemax="100">
+                </div>
+            </div>
+        </div>
+    </div>
+
+</dic>
+
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script th:src="@{/js/script.js}"></script>
+</body>
+</html>

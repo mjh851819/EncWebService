@@ -1,0 +1,150 @@
+.container {
+}
+
+.text-center {
+    text-align: center;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    margin: 1%;
+}
+
+.filebox {
+    margin-bottom: 10px;
+    display: flex;
+}
+
+
+.filebox input[type="file"] {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip:rect(0,0,0,0);
+    border: 0;
+}
+
+.filebox label {
+    display: inline-block;
+    padding: .5em .75em;
+
+
+    background-color: #f5f5f5;
+    border: 1px solid #ebebeb;
+    border-bottom-color: #e2e2e2;
+    border-radius: .30em;
+    flex-grow: 1;
+    text-align: center;
+}
+
+/* named upload */
+.filebox .upload-name {
+    display: inline-block;
+    display: flex;
+    padding: .5em .75em;
+    font-size: inherit;
+    font-family: inherit;
+    line-height: normal;
+    vertical-align: middle;
+    color: #999;
+    background-color: #fdfdfd;
+    border: 1px solid #ebebeb;
+    border-bottom-color: #e2e2e2;
+    border-radius: .30em;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 88%;
+    margin-right: 1%;
+}
+#uploadButton {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-size: inherit;
+}
+
+#uploadButton:hover {
+    background-color: #0056b3;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.progress {
+    width: 100%;
+    background-color: #f5f5f5;
+    margin-top: 20px;
+}
+
+.progress-bar {
+    width: 0;
+    height: 30px;
+    background-color: #4caf50;
+    text-align: center;
+    line-height: 30px;
+    color: white;
+}
+
+.table-container {
+    display: flex;
+    margin: 1%;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table th, table td {
+    border: 1px solid #dddddd;
+    padding: 8px;
+    text-align: center;
+}
+.fileName{
+    margin-left: 0.5em;
+    float: left;
+}
+
+.download {
+    float: right;
+}
+
+.downIcon {
+    width: 1em;
+    height: 1em;
+}
+
+.pagination {
+    margin: 1%;
+    float: right;
+}
