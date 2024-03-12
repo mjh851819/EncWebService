@@ -3,6 +3,7 @@ package com.service.component;
 import com.service.handler.ex.CustomBadRequestException;
 import com.service.handler.ex.CustomIoException;
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -10,6 +11,7 @@ import org.junit.jupiter.api.io.TempDir;
 
 import java.io.File;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -40,21 +42,26 @@ class FileManagerTest {
 
     @Test
     @DisplayName("uploadBinaryFile 성공 테스트.")
-    public void testUploadBinaryFileWithSuccess(@TempDir Path tempDir) {
+    public void testUploadBinaryFileWithSuccess() {
 
         //given
         byte[] file = "abcd".getBytes();
         String fileName = "abcd.bin";
-        fileManager.setFilePath(tempDir.toString() + File.separator);
+        String tmpDirPath = "/tmp/";
+        fileManager.setFilePath(tmpDirPath);
 
         //when
-        String SavedFileName = fileManager.uploadBinaryFile(file, fileName);
+        String savedFileName = fileManager.uploadBinaryFile(file, fileName);
 
         //then
-        Path filePath = tempDir.resolve(SavedFileName);
+        Path filePath = Paths.get(tmpDirPath + savedFileName);
         File uploadedFile = filePath.toFile();
         assertTrue(uploadedFile.exists());
         assertTrue(uploadedFile.isFile());
+
+        if (uploadedFile.exists()) {
+            uploadedFile.delete(); // 파일 삭제
+        }
 
     }
 
