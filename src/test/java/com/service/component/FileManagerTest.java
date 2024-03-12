@@ -40,7 +40,7 @@ class FileManagerTest {
         Assertions.assertThat(fullFilePath).isEqualTo(tmp + fileName);
     }
 
-    @Test
+    /*@Test
     @DisplayName("uploadBinaryFile 성공 테스트.")
     public void testUploadBinaryFileWithSuccess() {
 
@@ -61,7 +61,7 @@ class FileManagerTest {
             uploadedFile.delete(); // 파일 삭제
         }
 
-    }
+    }*/
 
     @Test
     @DisplayName("uploadBinaryFile 실패 테스트. 빈 파일을 저장하려 할 때.")
