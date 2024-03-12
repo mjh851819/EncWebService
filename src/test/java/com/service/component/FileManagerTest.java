@@ -52,7 +52,6 @@ class FileManagerTest {
         String savedFileName = fileManager.uploadBinaryFile(file, fileName);
 
         //then
-
         Path filePath = Paths.get(fileManager.getFullFilePath(savedFileName));
         File uploadedFile = filePath.toFile();
         assertTrue(uploadedFile.exists());
